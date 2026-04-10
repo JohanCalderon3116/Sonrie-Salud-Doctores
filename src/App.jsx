@@ -14,40 +14,11 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 function App() {
   const { themeStyle } = useThemeStore();
-  const [stateMenu, setStateMenu] = useState(false);
-  const [sidebearOpen, setSidebatOpen] = useState(false);
-  const { mostrarusuarios } = useUsuariosStore();
-
-  
-  const { refetch } = useQuery({
-    queryKey: ["mostrar usuarios"],
-    queryFn: mostrarusuarios,
-    refetchOnWindowFocus: false,
-  });
   return (
     <ThemeProvider theme={themeStyle}>
       <AuthContextProvider>
-        <Container className={sidebearOpen ? "active" : ""}>
-          <GlobalStyles></GlobalStyles>
-          <section className="contentSidebar">
-            <Sidebar
-              state={sidebearOpen}
-              setState={() => setSidebatOpen(!sidebearOpen)}
-            ></Sidebar>
-          </section>
-          <section className="menuMenuambur">
-            <Toogle
-              state={stateMenu}
-              setstate={() => setStateMenu(!stateMenu)}
-            ></Toogle>
-            {stateMenu && (
-              <MenuMovil setState={() => setStateMenu(!stateMenu)}></MenuMovil>
-            )}
-          </section>
-          <section className="contentRoters">
-            <MyRoutes></MyRoutes>
-          </section>
-        </Container>
+        <GlobalStyles></GlobalStyles>
+        <MyRoutes></MyRoutes>
       </AuthContextProvider>
     </ThemeProvider>
   );
